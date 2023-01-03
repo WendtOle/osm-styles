@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map background-color="#b8dee6" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+  <Parameters>
+    <Parameter name="bounds">3.9551,46.4681,17.4902,54.826</Parameter>
+    <Parameter name="center">11.25,52.0525,1</Parameter>
+    <Parameter name="format"><![CDATA[png8]]></Parameter>
+    <Parameter name="minzoom">0</Parameter>
+    <Parameter name="maxzoom">22</Parameter>
+    <Parameter name="scale">1</Parameter>
+    <Parameter name="metatile">2</Parameter>
+    <Parameter name="id"><![CDATA[demo-project-2]]></Parameter>
+    <Parameter name="_updated">1672742607000</Parameter>
+    <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
+    <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
+  </Parameters>
+  <Style filter-mode="first" name="countries">
+    <Rule>
+      <PolygonSymbolizer fill="#ffffff" />
+    </Rule>
+  </Style>
+  <Style filter-mode="first" name="countries-outline">
+    <Rule>
+      <LineSymbolizer stroke="#85c5d3" stroke-linejoin="round" stroke-width="2" />
+    </Rule>
+  </Style>
+  <Layer name="countries" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[countries-outline]]></StyleName>
+    <StyleName><![CDATA[countries]]></StyleName>
+    <Datasource>
+      <Parameter name="file"><![CDATA[/Users/olewendt/Documents/MapBox/project/demo-project-2/layers/countries/82945364-10m-admin-0-countries.shp]]></Parameter>
+      <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="buildings-l">
+    <Rule>
+      <Filter><![CDATA[([building] = 'government')]]></Filter>
+      <LineSymbolizer stroke="#d48e7c" stroke-width="2" />
+    </Rule>
+  </Style>
+  <Style filter-mode="first" name="buildings">
+    <Rule>
+      <LineSymbolizer stroke="#559944" stroke-width="0.5" />
+      <PolygonSymbolizer fill="#aaee88" fill-opacity="1" />
+    </Rule>
+  </Style>
+  <Layer name="buildings" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[buildings]]></StyleName>
+    <StyleName><![CDATA[buildings-l]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="dbname"><![CDATA[gis]]></Parameter>
+      <Parameter name="key_field"><![CDATA[]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
+      <Parameter name="table"><![CDATA[(select way, building from planet_osm_polygon where building is not null) as buildings]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="roads">
+    <Rule>
+      <LineSymbolizer stroke="#116688" stroke-opacity="0.2" stroke-width="1" />
+    </Rule>
+  </Style>
+  <Layer name="roads" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[roads]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="dbname"><![CDATA[gis]]></Parameter>
+      <Parameter name="key_field"><![CDATA[]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
+      <Parameter name="table"><![CDATA[(select highway, way from planet_osm_roads) as roads]]></Parameter>
+    </Datasource>
+  </Layer>
+</Map>
